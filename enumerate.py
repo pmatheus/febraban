@@ -23,6 +23,7 @@ def worker():
     global found_flag, flag, lock
     while not path_queue.empty() and not found_flag:
         current_path = path_queue.get()
+        print(f"[*] Testando /{current_path}")
         try:
             url = BASE_URL + current_path
             response = requests.get(url, timeout=5)
@@ -30,6 +31,8 @@ def worker():
             if response.status_code == 200:
                 # check response size
                 print(len(response.text))
+            if response.status == 404:
+                continue
             else:
                 print(response.status_code)
                 print(response.text)

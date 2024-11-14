@@ -31,7 +31,7 @@ def worker():
             if response.status_code == 200:
                 # check response size
                 print(len(response.text))
-            if response.status == 404:
+            if response.status_code == 404:
                 continue
             else:
                 print(response.status_code)
